@@ -15,21 +15,10 @@ const allowedOrigins = ['http://localhost:5173', 'https://authentication-system-
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: function (origin, callback) {
-    // allow server-to-server & preflight
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("CORS not allowed"));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+    origin: allowedOrigins,
+    credentials: true
 }));
-app.options("*", cors());
+
 connectDb();
 
 
