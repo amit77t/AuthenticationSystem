@@ -56,7 +56,7 @@ export const register= async (req,res)=>{
         });
 
     } catch (error) {
-        response.json({success:false,message:error.message});
+        res.json({success:false,message:error.message});
     }
 }
 export const login= async (req,res)=>{
